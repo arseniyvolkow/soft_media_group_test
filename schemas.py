@@ -2,7 +2,11 @@ from pydantic import BaseModel, HttpUrl, Field
 
 
 class LinkCreate(BaseModel):
-    original_url: HttpUrl = Field(..., description="Url который будет сокращен")
+    original_url: HttpUrl = Field(
+        ..., 
+        description="Url который будет сокращен",
+        examples=["https://www.google.com"]
+    )
 
 
 class LinkShortenResponse(BaseModel):
