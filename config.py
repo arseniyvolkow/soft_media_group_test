@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     POSTGRES_DATABASE_USERNAME: str = "postgres"
     POSTGRES_DATABASE_PASSWORD: str = "postgres"
     POSTGRES_DATABASE_HOST: str = "db"
+    POSTGRES_DATABASE_PORT: int = 5432
     POSTGRES_DATABASE_NAME: str = "link_db"
 
     @property
@@ -12,7 +13,7 @@ class Settings(BaseSettings):
         return (
             f"postgresql+asyncpg://{self.POSTGRES_DATABASE_USERNAME}:"
             f"{self.POSTGRES_DATABASE_PASSWORD}@"
-            f"{self.POSTGRES_DATABASE_HOST}:5432/"
+            f"{self.POSTGRES_DATABASE_HOST}:{self.POSTGRES_DATABASE_PORT}/"
             f"{self.POSTGRES_DATABASE_NAME}"
         )
 

@@ -31,6 +31,7 @@ cp .env_example .env
 POSTGRES_DATABASE_USERNAME=postgres
 POSTGRES_DATABASE_PASSWORD=postgres
 POSTGRES_DATABASE_HOST=db
+POSTGRES_DATABASE_PORT=5432
 POSTGRES_DATABASE_NAME=link_db
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
@@ -43,8 +44,10 @@ POSTGRES_DB=link_db
 docker compose up --build
 ```
 
-Миграции применяются автоматически при запуске контейнера (`alembic upgrade head`).
-API будет доступно по адресу: <http://localhost:8000>
+**Особенности запуска:**
+- Данные PostgreSQL сохраняются в именованном volume `postgres_data`.
+- Миграции применяются автоматически при запуске контейнера (`alembic upgrade head`).
+- API будет доступно по адресу: <http://localhost:8000>
 
 ## Работа с миграциями (Alembic)
 
