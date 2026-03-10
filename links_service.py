@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from models import Link
 from utils import Base62Encoder
 
+
 class LinksService:
     def __init__(self, db: AsyncSession):
         self.db = db
@@ -25,7 +26,7 @@ class LinksService:
         link_id = self.encoder.decode(short_id)
         if link_id is None:
             return None
-            
+
         query = select(Link).where(Link.id == link_id)
         result = await self.db.execute(query)
         return result.scalar_one_or_none()
@@ -34,7 +35,7 @@ class LinksService:
         link_id = self.encoder.decode(short_id)
         if link_id is None:
             return None
-        
+
         query = (
             update(Link)
             .where(Link.id == link_id)
@@ -45,5 +46,5 @@ class LinksService:
         result = await self.db.execute(query)
         original_url = result.scalar_one_or_none()
         await self.db.commit()
-        
+
         return original_url
